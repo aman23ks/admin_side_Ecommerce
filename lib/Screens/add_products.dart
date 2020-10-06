@@ -22,6 +22,7 @@ class _AddProductState extends State<AddProduct> {
   BrandService _brandService = BrandService();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController productNameController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
   List<DocumentSnapshot> brands = <DocumentSnapshot>[];
@@ -101,7 +102,18 @@ class _AddProductState extends State<AddProduct> {
         key: _formKey,
         child: SingleChildScrollView(
           child: isLoading
-              ? Center(child: CircularProgressIndicator())
+              ? Center(
+                  child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        CircularProgressIndicator(),
+                      ],
+                    )
+                  ],
+                ))
               : Column(
                   children: <Widget>[
                     Row(
@@ -205,6 +217,19 @@ class _AddProductState extends State<AddProduct> {
                             return 'You must enter the product name';
                           } else if (value.length > 10) {
                             return 'Product name cant have more than 10 letters';
+                          }
+                        },
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: descriptionController,
+                        decoration: InputDecoration(hintText: 'Description'),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'You must enter the product description';
                           }
                         },
                       ),
@@ -525,6 +550,7 @@ class _AddProductState extends State<AddProduct> {
               sizes: selectedSizes,
               featured: isFeatured,
               onSale: onSale,
+              description: descriptionController.text,
             );
             _formKey.currentState.reset();
             setState(() => isLoading = false);
