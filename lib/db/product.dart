@@ -15,6 +15,7 @@ class ProductService {
     bool featured,
     bool onSale,
     String description,
+    List colors,
   }) {
     var id = Uuid();
     String productId = id.v1();
@@ -31,6 +32,7 @@ class ProductService {
       'featured': featured,
       'sale': onSale,
       'description': description,
+      'colors': colors,
     });
   }
 }

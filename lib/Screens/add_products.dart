@@ -21,15 +21,18 @@ class _AddProductState extends State<AddProduct> {
   CategoryService _categoryService = CategoryService();
   BrandService _brandService = BrandService();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _colorKey = GlobalKey<FormState>();
   TextEditingController productNameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
+  TextEditingController colorController = TextEditingController();
   List<DocumentSnapshot> brands = <DocumentSnapshot>[];
   List<DocumentSnapshot> categories = <DocumentSnapshot>[];
   List<DropdownMenuItem<String>> categoriesDropDown =
       <DropdownMenuItem<String>>[];
   List<DropdownMenuItem<String>> brandsDropDown = <DropdownMenuItem<String>>[];
+  List<String> pickColors = <String>[];
   String _currentCategory;
   String _currentBrand;
   Color white = Colors.white;
@@ -44,6 +47,13 @@ class _AddProductState extends State<AddProduct> {
   bool isLoading = false;
   bool isFeatured = false;
   bool onSale = false;
+  bool onBorder1 = false;
+  bool onBorder2 = false;
+  bool onBorder3 = false;
+  bool onBorder4 = false;
+  bool onBorder5 = false;
+  bool onBorder6 = false;
+  bool onBorder7 = false;
   final picker = ImagePicker();
 
   @override
@@ -169,13 +179,208 @@ class _AddProductState extends State<AddProduct> {
                       ],
                     ),
 
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'enter a product name with 10 characters at maximum',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: red, fontSize: 12),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            if (onBorder1) {
+                              setState(() {
+                                onBorder1 = false;
+                              });
+                              pickColors.remove("red");
+                            } else {
+                              setState(() {
+                                onBorder1 = true;
+                              });
+                              pickColors.add("red");
+                            }
+                          },
+                          child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color:
+                                          onBorder1 ? Colors.grey : Colors.red,
+                                      width: 3))),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (onBorder2) {
+                              setState(() {
+                                onBorder2 = false;
+                              });
+                              pickColors.remove("blue");
+                            } else {
+                              setState(() {
+                                onBorder2 = true;
+                              });
+                              pickColors.add("blue");
+                            }
+                          },
+                          child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color:
+                                          onBorder2 ? Colors.grey : Colors.blue,
+                                      width: 3))),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (onBorder3) {
+                              setState(() {
+                                onBorder3 = false;
+                              });
+                              pickColors.remove("orange");
+                            } else {
+                              setState(() {
+                                onBorder3 = true;
+                              });
+                              pickColors.add("orange");
+                            }
+                          },
+                          child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  color: Colors.orange,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: onBorder3
+                                          ? Colors.grey
+                                          : Colors.orange,
+                                      width: 3))),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (onBorder4) {
+                              setState(() {
+                                onBorder4 = false;
+                              });
+                              pickColors.remove("green");
+                            } else {
+                              setState(() {
+                                onBorder4 = true;
+                              });
+                              pickColors.add("green");
+                            }
+                          },
+                          child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: onBorder4
+                                          ? Colors.grey
+                                          : Colors.green,
+                                      width: 3))),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (onBorder5) {
+                              setState(() {
+                                onBorder5 = false;
+                              });
+                              pickColors.remove("black");
+                            } else {
+                              setState(() {
+                                onBorder5 = true;
+                              });
+                              pickColors.add("black");
+                            }
+                          },
+                          child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: onBorder5
+                                          ? Colors.grey
+                                          : Colors.black,
+                                      width: 3))),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (onBorder6) {
+                              setState(() {
+                                onBorder6 = false;
+                              });
+                              pickColors.remove("brown");
+                            } else {
+                              setState(() {
+                                onBorder6 = true;
+                              });
+                              pickColors.add("brown");
+                            }
+                          },
+                          child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  color: Colors.brown,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: onBorder6
+                                          ? Colors.grey
+                                          : Colors.brown,
+                                      width: 3))),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (onBorder7) {
+                              setState(() {
+                                onBorder7 = false;
+                              });
+                              pickColors.remove("yellow");
+                            } else {
+                              setState(() {
+                                onBorder7 = true;
+                              });
+                              pickColors.add("yellow");
+                            }
+                          },
+                          child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  color: Colors.yellow,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: onBorder7
+                                          ? Colors.grey
+                                          : Colors.yellow,
+                                      width: 3))),
+                        ),
+                      ],
                     ),
 
                     Padding(
@@ -207,6 +412,14 @@ class _AddProductState extends State<AddProduct> {
                       ),
                     ),
 
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'enter a product name with 10 characters at maximum',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: red, fontSize: 12),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
@@ -551,6 +764,7 @@ class _AddProductState extends State<AddProduct> {
               featured: isFeatured,
               onSale: onSale,
               description: descriptionController.text,
+              colors: pickColors,
             );
             _formKey.currentState.reset();
             setState(() => isLoading = false);
